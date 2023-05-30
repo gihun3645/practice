@@ -31,7 +31,11 @@ dependencies {
 	// JSP 관련 의존성 추가
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'javax.servlet:jstl'
+    // MyBatis 라이브러리 의존성 추가
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.25'
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()

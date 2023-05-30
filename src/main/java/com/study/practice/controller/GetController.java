@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dto.MemberDto;
+import com.study.practice.dto.MemberDto;
 
 @RestController
 @RequestMapping("/api/v1/get-api")

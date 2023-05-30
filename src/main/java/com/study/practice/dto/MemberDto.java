@@ -1,4 +1,4 @@
-package dto;
+package com.study.practice.dto;
 
 public class MemberDto {
 	private String name;
