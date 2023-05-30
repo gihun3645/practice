@@ -22,6 +22,18 @@
   
  </tbody>
 
+<tbody>
+
+<c:forEach items="${list}" var="board">
+ <tr>
+  <td>${board.board_id}</td>
+  <td>${board.title}</td>
+  <td>${board.reg_date}</td>
+  <td>${board.writer}</td>
+  <td>${board.view_count}</td>
+ </tr>
+</c:forEach>
+</tbody>
 </table>
 </body>
 </html>
