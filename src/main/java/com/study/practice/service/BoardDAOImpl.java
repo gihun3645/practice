@@ -34,4 +34,9 @@ public class BoardDAOImpl implements BoardDAO {
     public Board view(int board_id) throws Exception {
     	return boardDAO.view(board_id);
     }
+    
+    // 게시글 수정
+    public void modify(Board board) throws Exception {
+    	boardDAO.modify(board);
+    }
 }
