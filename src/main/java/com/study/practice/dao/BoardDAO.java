@@ -18,4 +18,7 @@ public interface BoardDAO {
 	
 	// 게시글 조회 
 	public Board view(int board_id) throws Exception;
+
+	// 게시글 수정
+	public void modify(Board board) throws Exception;
 }

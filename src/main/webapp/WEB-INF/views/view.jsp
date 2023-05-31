@@ -14,7 +14,10 @@ ${view.title}<br />
 <label>작성자</label>
 ${view.writer}<br />
 
-<label>내용</label><br />
+<label>내용</label>
 ${view.content}<br />
+<div>
+        <a href="/modify?board_id=${view.board_id}">게시물 수정</a>
+    </div>
 </body>
 </html>
