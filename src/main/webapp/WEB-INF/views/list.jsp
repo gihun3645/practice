@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
                 <a href="/view?board_id=${board.board_id}">${board.title}</a>
             </td>
             <td>${board.title}</td>
-            <td>${board.reg_date}</td>
+            <td><fmt:formatDate value="${board.reg_date}" pattern="yyyy-MM-dd" /></td>
             <td>${board.writer}</td>
             <td>${board.view_count}</td>
         </tr>

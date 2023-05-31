@@ -39,4 +39,9 @@ public class BoardDAOImpl implements BoardDAO {
     public void modify(Board board) throws Exception {
     	boardDAO.modify(board);
     }
+    
+    // 게시글 삭제
+    public void delete(int board_id) throws Exception {
+    	boardDAO.delete(board_id);
+    }
 }

@@ -70,5 +70,12 @@ public class BoardController {
 			
 			return "redirect:/view?board_id="+board.getBoard_id();
 		}
-	
+		
+		// 게시물 삭제 (DELETE)
+		@RequestMapping(value = "/delete", method = RequestMethod.GET)
+		public String getDelete(@RequestParam("board_id") int board_id) throws Exception {
+			 boardDAOImpl.delete(board_id);
+			System.out.println(board_id);
+			return "redirect:/list";
+		}
 }

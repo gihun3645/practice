@@ -21,4 +21,7 @@ public interface BoardDAO {
 
 	// 게시글 수정
 	public void modify(Board board) throws Exception;
+	
+	// 게시글 삭제
+	public void delete(int board_id) throws Exception;
 }
