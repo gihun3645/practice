@@ -7,7 +7,7 @@
     <title>게시물 작성</title>
 </head>
 <body>
-<form action="/modify" method="post">
+<form action="/write" method="post">
 
     <label>제목</label>
     <input type="text" name="title"/><br/>

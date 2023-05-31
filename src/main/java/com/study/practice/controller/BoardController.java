@@ -55,20 +55,4 @@ public class BoardController {
 		mode.addAttribute("view", board);
 	}
 	
-	// 게시물 수정 (GET)
-	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void getModify(@RequestParam("board_id") int board_id, Model model) throws Exception {
-		Board board = boardDAOImpl.view(board_id);
-		
-		model.addAttribute("view", board);
-	}
-	
-	// 게시물 수정 (POST)
-	@RequestMapping(value = "/modify", method = RequestMethod.POST) 
-	public String postModify(Board board) throws Exception {
-		boardDAOImpl.modify(board);
-		System.out.println(board.getBoard_id());
-		
-		return "redirect:/view?board_id="+board.getBoard_id();
-	}
 }

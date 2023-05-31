@@ -8,16 +8,13 @@
 </head>
 <body>
 <form method="post">
-    <label>제목</label>
-    ${view.title}<br/>
+<label>제목</label>
+${view.title}<br />
 
-    <label>작성자</label>
-    ${view.writer}<br/>
+<label>작성자</label>
+${view.writer}<br />
 
-    <label>내용</label>
-    ${view.content}<br/>
-    <div>
-        <a href="/modify?board_id=${view.board_id}">게시물 수정</a>
-    </div>
+<label>내용</label><br />
+${view.content}<br />
 </body>
 </html>

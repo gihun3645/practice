@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.study.practice.domain.Board;
 
@@ -19,7 +18,4 @@ public interface BoardDAO {
 	
 	// 게시글 조회 
 	public Board view(int board_id) throws Exception;
-	
-	// 게시글 수정
-	public void modify(Board board) throws Exception;
 }
