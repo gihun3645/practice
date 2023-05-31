@@ -11,4 +11,6 @@ import com.study.practice.domain.Board;
 @Repository
 public interface BoardDAO {
 	public List<Board> list();
+	
+	public void write(Board board) throws Exception;
 }

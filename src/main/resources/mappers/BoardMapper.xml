@@ -12,4 +12,12 @@
             board_id, title, content, writer, reg_date, view_count
             from board;
     </select>
+    
+   <!-- 게시물 작성 -->
+  <insert id="write" parameterType="com.study.practice.domain.Board">
+        insert into
+            board(title, content, writer)
+            values(#{title}, #{content}, #{writer})
+    </insert>
+    
 </mapper>

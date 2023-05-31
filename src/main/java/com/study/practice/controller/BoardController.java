@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.study.practice.domain.Board;
 import com.study.practice.service.BoardDAOImpl;
 
 @Controller
@@ -24,10 +26,25 @@ public class BoardController {
 	@Autowired
 	private BoardDAOImpl boardDAOImpl;
 	
+	// 게시물 목록.
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void getList(Model model) throws Exception{
 		List list = null;
 		list = boardDAOImpl.list();
 		model.addAttribute("list", list);
+	}
+	
+	// 게시물 작성
+	@RequestMapping(value ="/write", method = RequestMethod.GET)
+	public String getWrite() throws Exception {
+		return "write";
+	}
+	
+	// 게시물 작성 (POST)
+	@RequestMapping(value = "/write", method = RequestMethod.POST )
+	public String postWrite(Board board) throws Exception{
+		boardDAOImpl.write(board);
+		
+		return "redirect:/list";
 	}
 }
