@@ -7,6 +7,9 @@
     <title>게시물 작성</title>
 </head>
 <body>
+<div id="nav">
+	<%@  include file="nav.jsp"  %> 
+</div>
 <form action="/write" method="post">
 
     <label>제목</label>

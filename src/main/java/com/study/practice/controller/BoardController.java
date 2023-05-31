@@ -67,7 +67,6 @@ public class BoardController {
 		@RequestMapping(value = "/modify", method = RequestMethod.POST) 
 		public String postModify(Board board) throws Exception {
 			boardDAOImpl.modify(board);
-			System.out.println(board.getBoard_id());
 			
 			return "redirect:/view?board_id="+board.getBoard_id();
 		}

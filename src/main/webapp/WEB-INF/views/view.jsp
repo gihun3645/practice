@@ -7,6 +7,9 @@
     <title>게시물 조회</title>
 </head>
 <body>
+<div id="nav">
+	<%@  include file="nav.jsp"  %> 
+</div>
 <form method="post">
 <label>제목</label>
 ${view.title}<br />
@@ -19,5 +22,6 @@ ${view.content}<br />
 <div>
         <a href="/modify?board_id=${view.board_id}">게시물 수정</a>
     </div>
+    </form>
 </body>
 </html>
