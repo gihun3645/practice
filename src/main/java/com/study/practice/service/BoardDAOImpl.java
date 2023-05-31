@@ -29,6 +29,9 @@ public class BoardDAOImpl implements BoardDAO {
     public void write(Board board) throws Exception {
         boardDAO.write(board);
     }
+    
+    // 게시물 조회
+    public Board view(int board_id) throws Exception {
+    	return boardDAO.view(board_id);
+    }
 }
-
-// 전 코드

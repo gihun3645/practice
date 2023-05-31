@@ -27,6 +27,9 @@
     <c:forEach items="${list}" var="board">
         <tr>
             <td>${board.board_id}</td>
+            <td>
+                <a href="/view?board_id=${board.board_id}">${board.title}</a>
+            </td>
             <td>${board.title}</td>
             <td>${board.reg_date}</td>
             <td>${board.writer}</td>

@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.practice.domain.Board;
 import com.study.practice.service.BoardDAOImpl;
@@ -34,7 +34,7 @@ public class BoardController {
 		model.addAttribute("list", list);
 	}
 	
-	// 게시물 작성
+	// 게시물 작성 (GET)
 	@RequestMapping(value ="/write", method = RequestMethod.GET)
 	public String getWrite() throws Exception {
 		return "write";
@@ -47,4 +47,12 @@ public class BoardController {
 		
 		return "redirect:/list";
 	}
+	
+	// 게시물 조회
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public void getView(@RequestParam("board_id") int board_id, Model mode) throws Exception {
+		Board board = boardDAOImpl.view(board_id);
+		mode.addAttribute("view", board);
+	}
+	
 }

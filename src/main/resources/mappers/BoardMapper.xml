@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.study.practice.dao.BoardDAO">
 
 
     <!-- 게시물 목록 -->
     <select id="list" resultType="com.study.practice.domain.Board">
-        select
-            board_id, title, content, writer, reg_date, view_count
-            from board;
+        select board_id,
+               title,
+               content,
+               writer,
+               reg_date,
+               view_count
+        from board;
     </select>
-    
-   <!-- 게시물 작성 -->
-  <insert id="write" parameterType="com.study.practice.domain.Board">
-        insert into
-            board(title, content, writer)
-            values(#{title}, #{content}, #{writer})
+
+    <!-- 게시물 작성 -->
+    <insert id="write" parameterType="com.study.practice.domain.Board">
+        insert into board(title, content, writer)
+        values (#{title}, #{content}, #{writer})
     </insert>
-    
+
+    <!-- 게시물 조회 -->
+    <select id="view" parameterType="int" resultType="com.study.practice.domain.Board">
+        select board_id,
+               title,
+               content,
+               writer,
+               reg_date,
+               view_count
+        from board
+        where board_id = #{board_id}
+    </select>
+
 </mapper>
