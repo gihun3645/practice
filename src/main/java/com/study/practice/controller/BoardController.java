@@ -18,8 +18,6 @@ public class BoardController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
-		// 현재 시간을 serverTime 속성으로 전달
-		model.addAttribute("serverTime", new Date());
 		return "index";
 	}
 	
@@ -77,5 +75,28 @@ public class BoardController {
 			 boardDAOImpl.delete(board_id);
 			System.out.println(board_id);
 			return "redirect:/list";
+		}
+
+		// 게시글 목록 + 페이징 추가
+		@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+			
+			// 게시물 총 갯수
+			int count = boardDAOImpl.count();
+			
+			// 한 페이지에 출력할 게시물 갯수
+			int postNum = 10;
+			
+			// 하단 페이징 번호([ 게시물 총 갯수 / 한 페이지에 출력할 개]의올림)
+			int pageNum = (int)Math.ceil((double)count/postNum);
+			
+			// 출력할 게시물
+			int displayPost = (num - 1) * postNum;
+			
+			List<Board> list = null;
+			list = boardDAOImpl.listPage(displayPost, postNum);
+			model.addAttribute("list", list);
+			model.addAttribute("pageNum", pageNum);
+	
 		}
 }

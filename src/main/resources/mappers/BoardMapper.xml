@@ -7,15 +7,13 @@
 
     <!-- 게시물 목록 -->
     <select id="list" resultType="com.study.practice.domain.Board">
-        select
-            board_id,
-            title,
-            content,
-            writer,
-            reg_date,
-            view_count
-        from
-            board;
+        select board_id,
+               title,
+               content,
+               writer,
+               reg_date,
+               view_count
+        from board;
     </select>
 
     <!-- 게시물 작성 -->
@@ -26,34 +24,47 @@
 
     <!-- 게시물 조회 -->
     <select id="view" parameterType="int" resultType="com.study.practice.domain.Board">
-        select
-            board_id,
-            title,
-            content,
-            writer,
-            reg_date,
-            view_count
-        from
-            board
-        where
-            board_id = #{board_id}
+        select board_id,
+               title,
+               content,
+               writer,
+               reg_date,
+               view_count
+        from board
+        where board_id = #{board_id}
     </select>
 
     <!-- 게시물 수정 -->
     <update id="modify" parameterType="com.study.practice.domain.Board">
         UPDATE board
-        SET
-            title = #{title},
+        SET title   = #{title},
             content = #{content},
-            writer = #{writer}
-        WHERE
-            board_id = #{board_id}
+            writer  = #{writer}
+        WHERE board_id = #{board_id}
     </update>
 
     <!-- 게시물 삭제 -->
     <delete id="delete" parameterType="int">
-        DELETE FROM board
-        WHERE
-            board_id = #{board_id}
-     </delete>
+        DELETE
+        FROM board
+        WHERE board_id = #{board_id}
+    </delete>
+
+    <!-- 게시물 총 개수  -->
+    <select id="count" resultType="int">
+        SELECT COUNT(board_id)
+        from board;
+    </select>
+
+    <!-- 게시물 목록 + 페이징 -->
+    <select id="listPage" resultType="com.study.practice.domain.Board">
+        SELECT board_id,
+               title,
+               writer,
+               reg_date,
+               view_count
+        from board
+        order by board_id DESC
+            limit #{displayPost}, #{postNum};
+    </select>
 </mapper>
