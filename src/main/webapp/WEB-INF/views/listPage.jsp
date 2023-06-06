@@ -16,8 +16,8 @@
     <tr>
         <th>번호</th>
         <th>제목</th>
-        <th>작성일</th>
         <th>작성자</th>
+        <th>작성일</th>
         <th>조회수</th>
     </tr>
     </thead>
@@ -34,9 +34,8 @@
             <td>
                 <a href="/view?board_id=${board.board_id}">${board.title}</a>
             </td>
-            <td>${board.title}</td>
-            <td><fmt:formatDate value="${board.reg_date}" pattern="yyyy-MM-dd" /></td>
             <td>${board.writer}</td>
+            <td><fmt:formatDate value="${board.reg_date}" pattern="yyyy-MM-dd" /></td>
             <td>${board.view_count}</td>
         </tr>
     </c:forEach>

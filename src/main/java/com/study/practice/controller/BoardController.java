@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import java.awt.print.Pageable;
+import java.security.PublicKey;
 import java.security.Provider.Service;
 import java.util.Date; // Date 클래스를 import
 import java.util.List;
@@ -79,7 +80,6 @@ public class BoardController {
 		@RequestMapping(value = "/delete", method = RequestMethod.GET)
 		public String getDelete(@RequestParam("board_id") int board_id) throws Exception {
 			 boardDAOImpl.delete(board_id);
-			System.out.println(board_id);
 			return "redirect:/list";
 		}
 
@@ -97,8 +97,27 @@ public class BoardController {
 			
 			model.addAttribute("list", list);
 			model.addAttribute("pageNum", page.getPageNum());
-			
 			model.addAttribute("page", page);
 			model.addAttribute("select", num);
+		}
+		
+		// 게시물 목록 + 페이징 추가 + 검색
+		@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
+		public void getListPageSearch(Model model, 
+				@RequestParam("num") int num, 
+				@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType, 
+				@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
+			
+			Page page = new Page();
+			
+			page.setNum(num);
+			page.setCount(boardDAOImpl.count());
+			
+			List<Board> list = null;
+			list = boardDAOImpl.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
+			
+			model.addAttribute("list", list);
+			model.addAttribute("page", page);
+			model.addAttribute("select", num);			
 		}
 }

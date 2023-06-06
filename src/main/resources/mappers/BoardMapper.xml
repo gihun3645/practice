@@ -67,4 +67,29 @@
         order by board_id DESC
             limit #{displayPost}, #{postNum};
     </select>
+
+	<!-- 게시물 목록 + 페이징 + 검 --> 
+	<select id="listPageSearch" resultType="com.study.practice.domain.Board">
+    SELECT board_id,
+           title,
+           writer,
+           reg_date,
+           view_count
+    FROM board
+        <if test='searchType.equals("title")'>
+            WHERE title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("content")'>
+            WHERE content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("title_content")'>
+            WHERE (title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test='searchType.equals("writer")'>
+            WHERE writer LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    ORDER BY board_id DESC
+    LIMIT #{displayPost}, #{postNum}
+</select>
+
 </mapper>
