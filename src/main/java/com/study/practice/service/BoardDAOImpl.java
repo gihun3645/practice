@@ -1,29 +1,17 @@
 package com.study.practice.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-//import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.study.practice.dao.BoardDAO;
 import com.study.practice.domain.Board;
 
-//import javax.inject.Inject;
-
-//@Repository
 @Service
 public class BoardDAOImpl implements BoardDAO {
     private final BoardDAO boardDAO;
-
- 
-//    @Inject
-//    private SqlSession sql;
-//
-//    private static String namespace = "com.study.practice.dao.BoardDAO";
 
     @Autowired
     public BoardDAOImpl(BoardDAO boardDAO) {
@@ -69,4 +57,15 @@ public class BoardDAOImpl implements BoardDAO {
 	public List listPage(@Param("displayPost") int displayPost, @Param("postNum") int postNum) throws Exception {
 	    return boardDAO.listPage(displayPost, postNum);
 	}
+	
+	
+	// 게시물 목록 + 페이징 + 검색 
+	@Override
+	public List listPageSearch(
+			@Param("displayPost") int displayPost,@Param("postNum") int postNum, 
+			@Param("searchType") String searchType, @Param("keyword") String keyword) throws Exception {
+		
+		return boardDAO.listPageSearch(displayPost, postNum, searchType, keyword);
+	}
+	
 }
