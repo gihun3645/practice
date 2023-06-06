@@ -97,26 +97,7 @@ public class BoardController {
 			
 			model.addAttribute("list", list);
 			model.addAttribute("pageNum", page.getPageNum());
-			model.addAttribute("page", page);
-			model.addAttribute("select", num);
-		}
-		
-		// 게시물 목록 + 페이징 추가 + 검색
-		@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
-		public void getListPageSearch(Model model, 
-				@RequestParam("num") int num, 
-				@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType, 
-				@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
 			
-			Page page = new Page();
-			
-			page.setNum(num);
-			page.setCount(boardDAOImpl.count());
-			
-			List<Board> list = null;
-			list = boardDAOImpl.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
-			
-			model.addAttribute("list", list);
 			model.addAttribute("page", page);
 			model.addAttribute("select", num);			
 		}
