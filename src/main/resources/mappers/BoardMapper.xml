@@ -68,7 +68,7 @@
             limit #{displayPost}, #{postNum};
     </select>
 
-	<!-- 게시물 목록 + 페이징 + 검 --> 
+	<!-- 게시물 목록 + 페이징 + 검색  --> 
 	<select id="listPageSearch" resultType="com.study.practice.domain.Board">
     SELECT board_id,
            title,
@@ -88,8 +88,30 @@
         <if test='searchType.equals("writer")'>
             WHERE writer LIKE CONCAT('%', #{keyword}, '%')
         </if>
-    ORDER BY board_id DESC
-    LIMIT #{displayPost}, #{postNum}
-</select>
+   	 ORDER BY board_id DESC
+   	 LIMIT #{displayPost}, #{postNum}
+	</select>
+	
+	<!-- 게시물 총 갯수 + 검색적용 --> 
+	<select id="searchCount"  resultType="int" >
+		SELECT COUNT(board_id) FROM board
+
+        <if test='searchType.equals("title")'>
+            WHERE title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("content")'>
+            WHERE content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("title_content")'>
+            WHERE (title LIKE CONCAT('%', #{keyword}, '%') 
+            OR content LIKE CONCAT('%', #{keyword}, '%'))    
+        </if>
+
+        <if test='searchType.equals("writer")'>
+            WHERE writer LIKE CONCAT('%', #{keyword}, '%')
+        </if>                
+	</select>
 
 </mapper>

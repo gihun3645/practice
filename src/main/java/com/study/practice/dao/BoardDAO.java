@@ -34,4 +34,7 @@ public interface BoardDAO {
 	
 	// 게시물 목록  + 페이징 + 검색 
 	public List listPageSearch(@Param("displayPost") int displayPost,@Param("postNum") int postNum, @Param("searchType") String searchType, @Param("keyword") String keyword) throws Exception;
+
+	// 게시물 총 개수 + 검색 적용
+	public int searchCount(@Param("searchType") String searchType, @Param("keyword") String keyword) throws Exception;
 }

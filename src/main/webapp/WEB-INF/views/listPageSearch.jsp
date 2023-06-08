@@ -36,30 +36,36 @@
         </tbody>
     </table>
     <div>
+    
         <c:if test="${page.prev}">
-            <span>[ <a href="/listPageSearch?num=${page.startPageNum - 1}">이전</a> ]</span>
+            <span>[ <a href="/listPageSearch?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
         </c:if>
+        
         <c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
             <span>
+            
                 <c:if test="${select != num}">
-                    <a href="/listPageSearch?num=${num}">${num}</a>
+                    <a href="/listPageSearch?num=${num}${page.searchTypeKeyword}">${num}</a>
                 </c:if>
                 <c:if test="${select == num}">
                     <b>${num}</b>
                 </c:if>
+                
             </span>
         </c:forEach>
+        
         <c:if test="${page.next}">
-            <span>[ <a href="/listPageSearch?num=${page.endPageNum + 1}">다음</a> ]</span> 
+            <span>[ <a href="/listPageSearch?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span> 
         </c:if>
+        
         <div>
             <select name="searchType">
-                <option value="title">제목</option>
-                <option value="content">내용</option>
-                <option value="title_content">제목+내용</option>
-                <option value="writer">작성자</option>
+                <option value="title" <c:if test="${page.searchType eq 'title'}">seelcted</c:if>>제목</option>
+                <option value="content" <c:if test="${page.searchType eq 'content'}">seelcted</c:if>>내용</option>
+                <option value="title_content" <c:if test="${page.searchType eq 'tilte_content'}">seelcted</c:if>>제목+내용</option>
+                <option value="writer" <c:if test="${page.searchType eq 'writer'}">seelcted</c:if>>작성자</option>
             </select>
-            <input type="text" name="keyword" />
+            <input type="text" name="keyword" value="${page.keyword }"/>
             <button type="button" id="searchBtn">검색</button>
         </div>
     </div>

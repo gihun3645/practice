@@ -112,7 +112,12 @@ public class BoardController {
 					Page page = new Page();
 					
 					page.setNum(num);
-					page.setCount(boardDAOImpl.count());
+					page.setCount(boardDAOImpl.searchCount(searchType, keyword));
+					
+					// 검색 타입과 검색어
+					// page.setSearchTypeKeyword(searchType, keyword);
+					page.setSearchType(searchType);
+					page.setKeyword(keyword);
 					
 					List<Board> list = null;
 					list = boardDAOImpl.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
@@ -120,5 +125,8 @@ public class BoardController {
 					model.addAttribute("list", list);
 					model.addAttribute("page", page);
 					model.addAttribute("select", num);			
+					
+//					model.addAttribute("SearchType", searchType);
+//					model.addAttribute("keyword", keyword);
 				}
 }
