@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mysql.cj.protocol.PacketSentTimeHolder;
 import com.study.practice.domain.Board;
 import com.study.practice.domain.Page;
 import com.study.practice.service.BoardDAOImpl;
