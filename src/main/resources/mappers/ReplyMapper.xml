@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.practice.dao.ReplyDAO">
+    
+    <!-- 댓글 조회 -->
+    <select id="view" parameterType="int" resultType="com.study.practice.domain.Reply">
+        SELECT 
+            reply_id, board_id, writer, content, reg_date
+        FROM board_reply
+            WHERE board_id = #{board_id}
+    </select>
+    
+    <!-- 댓글 작성 -->
+    <insert id="replyWrite" parameterType="com.study.practice.domain.Reply">
+        INSERT INTO board_reply(board_id, writer, content, reg_date)
+            VALUE(#{board_id}, #{writer}, #{content}, #{reg_date})
+    </insert>
+    
+    <!-- 댓글 수정 -->
+    <update id="replyModify" parameterType="com.study.practice.domain.Reply">
+        UPDATE board_reply SET
+            writer = #{writer},
+            content = #{content}
+        WHERE reply_id = #{reply_id}
+                AND board_id = #{board_id}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="replyDelete" parameterType="com.study.practice.domain.Reply">
+        DELETE FROM board_reply
+        WHERE board_id = #{board_id}
+                AND reply_id = #{reply_id}
+    </delete>
+</mapper>

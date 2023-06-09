@@ -1,21 +1,18 @@
 package com.study.practice.controller;
 
 
+import com.study.practice.domain.Reply;
+import com.study.practice.service.ReplyDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import java.awt.print.Pageable;
-import java.security.PublicKey;
-import java.security.Provider.Service;
-import java.util.Date; // Date 클래스를 import
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mysql.cj.protocol.PacketSentTimeHolder;
+
 import com.study.practice.domain.Board;
 import com.study.practice.domain.Page;
 import com.study.practice.service.BoardDAOImpl;
@@ -30,6 +27,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardDAOImpl boardDAOImpl;
+
+	@Autowired
+	private ReplyDAOImpl replyDAOImpl;
 	
 	// 게시물 목록.
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -55,9 +55,16 @@ public class BoardController {
 	
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public void getView(@RequestParam("board_id") int board_id, Model mode) throws Exception {
+	public void getView(@RequestParam("board_id") int board_id, Model model) throws Exception {
+
 		Board board = boardDAOImpl.view(board_id);
-		mode.addAttribute("view", board);
+		model.addAttribute("view", board);
+
+		// 댓글 조회
+
+		List<Reply> reply = null;
+		reply = replyDAOImpl.view(board_id);
+		model.addAttribute("reply", reply);
 	}
 
 		// 게시물 수정 (GET)
@@ -124,9 +131,6 @@ public class BoardController {
 					
 					model.addAttribute("list", list);
 					model.addAttribute("page", page);
-					model.addAttribute("select", num);			
-					
-//					model.addAttribute("SearchType", searchType);
-//					model.addAttribute("keyword", keyword);
+					model.addAttribute("select", num);
 				}
 }
