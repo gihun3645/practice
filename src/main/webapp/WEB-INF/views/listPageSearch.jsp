@@ -71,16 +71,29 @@
     </div>
 
     <script>
-        document.getElementById("searchBtn").onclick = function() {
-            
-            let searchType = document.getElementsByName("searchType")[0].value;
-            let keyword = document.getElementsByName("keyword")[0].value;
 
-            console.log(searchType);
-            console.log(keyword);
-            
-            location.href = "/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
-        };
+            // Enter 키로 검색 버튼 작동
+            const searchBtn = document.getElementById("searchBtn");
+            const keywordInput = document.getElementsByName("keyword")[0];
+
+            // 이벤트 리스너를 등록하여 Enter 키 입력을 감지
+            keywordInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    e.preventDefault(); // 기본 동작방지
+                    searchBtn.click(); // 검색버튼 클릭
+                }
+            });
+
+            searchBtn.onclick = () => {
+                let searchType = document.getElementsByName("searchType")[0].value;
+                let keyword = keywordInput.value;
+
+
+                console.log(searchType);
+                console.log(keyword);
+
+                location.href = "/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+            };
     </script>
 </body>
 </html>
