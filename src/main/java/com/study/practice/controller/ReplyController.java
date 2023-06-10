@@ -43,4 +43,12 @@ public class ReplyController {
     	
     	return "redirect:/view?board_id=" + reply.getBoard_id();
     }
+
+    @RequestMapping(value = "/reply/delete", method = RequestMethod.GET)
+    public String deleteReply(@RequestParam("board_id") int board_id, @RequestParam("reply_id") int reply_id) throws Exception {
+    	
+    	replyDAOImpl.delete(board_id, reply_id);
+    	
+    	return "redirect:/view?board_id="+board_id;
+    }
 }

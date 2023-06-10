@@ -2,6 +2,8 @@ package com.study.practice.service;
 
 import com.study.practice.dao.ReplyDAO;
 import com.study.practice.domain.Reply;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +39,14 @@ public class ReplyDAOImpl implements ReplyDAO {
 
     // 댓글 삭제
     @Override
-    public void delete(int reply_id) throws Exception {
-        replyDAO.delete(reply_id);
-    }
+    public void delete(@Param("board_id") int board_id, @Param("reply_id") int reply_id) throws Exception{
+    	replyDAO.delete(board_id, reply_id);
+    }     
+    
 
     // 단일 댓글 조회 
 	@Override
 	public Reply select(Reply reply) throws Exception {
 		return replyDAO.select(reply);
-	}     
+	}
 }

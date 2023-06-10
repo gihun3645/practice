@@ -46,7 +46,8 @@
                 <p>${reply.content}</p>
                 
   				<p>
-                    <a href="/reply_modify?board_id=${view.board_id}&reply_id=${reply.reply_id}">수정</a> / <a href="">삭제</a>
+                    <a href="/reply_modify?board_id=${view.board_id}&reply_id=${reply.reply_id}">수정</a> 
+                    / <a href="/reply/delete?board_id=${view.board_id}&reply_id=${reply.reply_id}">삭제</a>
                 </p>
             </div>
         </li>

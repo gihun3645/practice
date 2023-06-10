@@ -29,10 +29,10 @@
     </update>
 
     <!-- 댓글 삭제 -->
-    <delete id="delete" parameterType="com.study.practice.domain.Reply">
+    <delete id="delete"  parameterType="int">
         DELETE FROM board_reply
         WHERE board_id = #{board_id}
-                AND reply_id = #{reply_id}
+        			AND reply_id = #{reply_id}
     </delete>
     
     <!--  단일 댓글조회  -->
