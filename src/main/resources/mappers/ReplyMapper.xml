@@ -34,4 +34,13 @@
         WHERE board_id = #{board_id}
                 AND reply_id = #{reply_id}
     </delete>
+    
+    <!--  단일 댓글조회  -->
+     <select id="select" parameterType="int" resultType="com.study.practice.domain.Reply">
+        SELECT 
+            reply_id, board_id, writer, content, reg_date
+        FROM board_reply
+            WHERE board_id = #{board_id}
+            				AND reply_id = #{reply_id}
+    </select>
 </mapper>

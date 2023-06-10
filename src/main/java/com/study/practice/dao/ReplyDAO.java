@@ -21,4 +21,7 @@ public interface ReplyDAO {
 
     // 댓글 삭제
     public void delete(int reply_id)throws Exception;
+    
+    // 단일 댓글 조회 
+    public Reply select(Reply reply) throws Exception;
 }

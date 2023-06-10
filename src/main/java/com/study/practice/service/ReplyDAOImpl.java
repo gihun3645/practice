@@ -40,4 +40,10 @@ public class ReplyDAOImpl implements ReplyDAO {
     public void delete(int reply_id) throws Exception {
         replyDAO.delete(reply_id);
     }
+
+    // 단일 댓글 조회 
+	@Override
+	public Reply select(Reply reply) throws Exception {
+		return replyDAO.select(reply);
+	}     
 }
