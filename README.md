@@ -42,7 +42,13 @@ create table board_reply (
 );
 
 
-
+CREATE TABLE user (
+    userId VARCHAR(30) NOT NULL,
+    userPass VARCHAR(100) NOT NULL,
+    userName VARCHAR(30) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`userId`),
+    UNIQUE (`userName`));
 ```
 
 
@@ -88,5 +94,13 @@ create table board_reply (
     primary key(reply_id, board_id),
     foreign key(board_id) references board(board_id)
 );
+
+CREATE TABLE user (
+    userId VARCHAR(30) NOT NULL,
+    userPass VARCHAR(100) NOT NULL,
+    userName VARCHAR(30) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`userId`),
+    UNIQUE (`userName`));
 ```
 
