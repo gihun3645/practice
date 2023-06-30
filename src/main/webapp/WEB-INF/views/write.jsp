@@ -11,21 +11,25 @@
     <title>게시물 작성</title>
 </head>
 <body>
-<div id="nav">
-	<%@  include file="nav.jsp"  %> 
+<div class="container">
+    <div id="nav" class="mb-4">
+        <%@  include file="nav.jsp"  %>
+    </div>
+    <form action="/write" method="post">
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="writer">작성자</label>
+            <input type="text" id="writer" name="writer" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="content">내용</label>
+            <textarea cols="50" rows="5" id="content" name="content" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">작성</button>
+    </form>
 </div>
-<form action="/write" method="post">
-
-    <label>제목</label>
-    <input type="text" name="title"/><br/>
-
-    <label>작성자</label>
-    <input type="text" name="writer"/><br/>
-
-    <label>내용</label>
-    <textarea cols="50" rows="5" name="content"></textarea><br/>
-
-    <button type="submit">작성</button>
-</form>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>게시물 수정</title>
+    <title>댓글 수정</title>
 </head>
 <body>
 <div id="nav">
@@ -21,22 +21,25 @@
 <!-- 댓글 수정 시작 -->
 <hr/>
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" action="/reply/modify">
+                <div class="form-group">
+                    <label>댓글 작성자</label>
+                    <input type="text" name="writer" readonly="readonly" value="${reply.writer}" class="form-control">
+                </div>
 
-<div>
-    <form method="post" action="/reply/modify">
+                <div class="form-group">
+                    <textarea rows="5" name="content" class="form-control">${reply.content}</textarea>
+                </div>
 
-        <p>
-            <label>댓글 작성자</label> <input type="text" name="writer" readonly="readonly" value="${reply.writer}">
-        </p>
-        <p>
-            <textarea rows="5" cols="50" name="content">${reply.content}</textarea>
-        </p>
-        <p>
-            <input type="hidden" name="board_id" value="${reply.board_id}">
-            <input type="hidden" name="reply_id" value="${reply.reply_id}">
-            <button type="submit">댓글 수정</button>
-        </p>
-    </form>
+                <input type="hidden" name="board_id" value="${reply.board_id}">
+                <input type="hidden" name="reply_id" value="${reply.reply_id}">
+                <button type="submit" class="btn btn-primary">댓글 수정</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>

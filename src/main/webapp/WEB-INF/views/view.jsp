@@ -13,72 +13,72 @@
     <title>게시물 조회</title>
 </head>
 <body>
-<div id="nav">
+<div id="nav" class="mb-5">
     <%@ include file="nav.jsp" %>
 </div>
 
-<h2>${view.title}</h2>
+<div class="container">
+    <h2 class="mb-4">${view.title}</h2>
 
-<hr/>
+    <hr/>
 
-<div class="writer">
-    <span>작성자 : </span>${view.writer}
-</div>
+    <div class="writer mb-3">
+        <span>작성자 : </span><strong>${view.writer}</strong>
+    </div>
 
-<hr/>
+    <hr/>
 
-<div class="content">
-    ${view.content}
-</div>
+    <div class="content mb-3">
+        ${view.content}
+    </div>
 
-<hr/>
+    <hr/>
 
-<div>
-    <a href="/modify?board_id=${view.board_id}">게시물 수정</a>,
-    <a href="/delete?board_id=${view.board_id}">게시물 삭제</a>
-</div>
+    <div class="mb-4">
+        <a href="/modify?board_id=${view.board_id}" class="btn btn-warning">게시물 수정</a>
+        <a href="/delete?board_id=${view.board_id}" class="btn btn-danger">게시물 삭제</a>
+    </div>
 
+    <!-- 댓글 시작 -->
+    <hr/>
 
-<!-- 댓글 시작 -->
-<hr/>
+    <ul class="list-unstyled">
+        <c:forEach items="${reply}" var="reply">
+            <li class="mb-3 p-3 border rounded">
+                <div>
+                    <p><strong>${reply.writer}</strong> / ${reply.reg_date}</p>
+                    <p>${reply.content}</p>
 
-<ul>
-    <c:forEach items="${reply}" var="reply">
-        <li>
-            <div>
-                <p>${reply.writer} / ${reply.reg_date}</p>
-                <p>${reply.content}</p>
-                
-  				<p>
-                    <a href="/reply_modify?board_id=${view.board_id}&reply_id=${reply.reply_id}">수정</a> 
-                    / <a href="/reply/delete?board_id=${view.board_id}&reply_id=${reply.reply_id}">삭제</a>
-                </p>
+                    <p>
+                        <a href="/reply_modify?board_id=${view.board_id}&reply_id=${reply.reply_id}" class="btn btn-sm btn-warning">수정</a>
+                        <a href="/reply/delete?board_id=${view.board_id}&reply_id=${reply.reply_id}" class="btn btn-sm btn-danger">삭제</a>
+                    </p>
+                </div>
+            </li>
+        </c:forEach>
+    </ul>
+
+    <div class="my-5">
+        <form method="post" action="/reply/write">
+            <div class="form-group">
+                <label>댓글 작성자</label>
+                <input type="text" name="writer" class="form-control">
             </div>
-        </li>
-    </c:forEach>
-</ul>
+            <div class="form-group">
+                <textarea rows="5" class="form-control" name="content"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="board_id" value="${view.board_id}">
+                <button type="submit" class="btn btn-primary">댓글 작성</button>
+            </div>
+        </form>
+    </div>
 
+    <script>
 
-<div>
-    <form method="post" action="/reply/write">
+    </script>
 
-        <p>
-            <label>댓글 작성자</label> <input type="text" name="writer">
-        </p>
-        <p>
-            <textarea rows="5" cols="50" name="content"></textarea>
-        </p>
-        <p>
-            <input type="hidden" name="board_id" value="${view.board_id}">
-            <button type="submit">댓글 작성</button>
-        </p>
-    </form>
+    <!-- 댓글 끝 -->
 </div>
-
-<script>
-
-</script>
-
-<!-- 댓글 끝 -->
 </body>
 </html>
