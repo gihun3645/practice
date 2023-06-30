@@ -86,7 +86,7 @@ public class BoardController {
 		@RequestMapping(value = "/delete", method = RequestMethod.GET)
 		public String getDelete(@RequestParam("board_id") int board_id) throws Exception {
 			 boardDAOImpl.delete(board_id);
-			return "redirect:/list";
+			return "redirect:/listPageSearch?num=1";
 		}
 
 		// 게시글 목록 + 페이징 추가
