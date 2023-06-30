@@ -93,17 +93,7 @@ public class Page {
 		displayPost = (num - 1) * postNum;
 	}
 	
-	
-	// 검색 타입과 검색어 
-	/*
-	private String searchTypeKeyword;
-	
-	public void setSearchTypeKeyword(String searchType, String keyword) {
-		if(searchType.equals("") || keyword.equals("")) 
-			searchTypeKeyword = "";
-		searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword;
-	}
-	*/
+
 	
 	private String searchType;
 	private String keyword;
