@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.practice.dao.UserDAO">
+
+    <!-- 회원가입 -->
+    <insert id="register" parameterType="com.study.practice.domain.User">
+        INSERT INTO user(userID, userPass, userName)
+            VALUES(#{userId}, #{userPass}, #{userName})
+    </insert>
+
+</mapper>

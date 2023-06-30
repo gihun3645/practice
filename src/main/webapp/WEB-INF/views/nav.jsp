@@ -25,5 +25,6 @@
 		<a class="p-2 text-dark" href="/listPageSearch?num=1">전체 글</a>
 		<a class="p-2 text-dark" href="/write">글 작성</a>
 	</nav>
-	<a class="btn btn-outline-primary" href="#">Sign up</a>
+	<a class="btn btn-outline-primary" href="/register">Sign up</a>
+	<a class="btn btn-outline-primary" href="#">Login</a>
 </div>
