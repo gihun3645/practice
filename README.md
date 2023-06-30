@@ -18,6 +18,9 @@
 ## 초반 MySQL 실행 쿼리
 
 ```java
+
+CREATE DATABASE practice CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 create table board (
 	board_id int not null auto_increment,
     title varchar(50) not null,
@@ -60,6 +63,9 @@ create table board_reply (
 ## 初期のMySQL実行クエリ
 
 ```java
+
+CREATE DATABASE practice CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 create table board (
 	board_id int not null auto_increment,
     title varchar(50) not null,
