@@ -49,7 +49,7 @@ public class BoardController {
 	public String postWrite(Board board) throws Exception{
 		boardDAOImpl.write(board);
 		
-		return "redirect:/list";
+		return "redirect:/listPageSearch?num=1";
 	}
 	
 	// 게시물 조회
