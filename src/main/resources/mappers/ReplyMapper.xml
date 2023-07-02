@@ -16,7 +16,7 @@
     <!-- 댓글 작성 -->
     <insert id="write" parameterType="com.study.practice.domain.Reply">
         INSERT INTO board_reply(board_id, writer, content, reg_date)
-            VALUE(#{board_id}, #{writer}, #{content}, #{reg_date})
+            VALUES(#{board_id}, #{writer}, #{content}, now())
     </insert>
     
     <!-- 댓글 수정 -->

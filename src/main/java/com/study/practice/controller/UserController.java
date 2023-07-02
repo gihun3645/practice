@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.slf4j.Logger;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -29,6 +33,39 @@ public class UserController {
         logger.info("post resister");
 
         userDAOImpl.register(user);
+
+        return "redirect:/";
+    }
+
+
+    // 로그인 GET
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public void getLogin() throws Exception {
+        logger.info("get login page");
+    }
+
+    // 로그인 POST
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(User user, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+        logger.info("post login");
+        HttpSession session = req.getSession();
+        User login = userDAOImpl.login(user);
+        if (login == null) {
+            session.setAttribute("user", null);
+            rttr.addFlashAttribute("msg", false);
+        } else {
+            session.setAttribute("user", login);
+        }
+        return "redirect:/";
+    }
+
+
+    // 로그아웃
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) throws Exception {
+        logger.info("get logout");
+
+        session.invalidate();
 
         return "redirect:/";
     }

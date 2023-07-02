@@ -21,4 +21,11 @@ public class UserDAOImpl implements UserDAO {
     public void register(User user) throws Exception {
         userDAO.register(user);
     }
+
+    // 로그인
+
+    @Override
+    public User login(User user) throws Exception {
+        return userDAO.login(user);
+    }
 }

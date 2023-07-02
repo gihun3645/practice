@@ -15,5 +15,11 @@
 <div id="nav">
 	<%@  include file="nav.jsp"  %> 
 </div>
+
+<c:if test="${user != null}">
+    <p>${user.userName}님 환영합니다.</p>
+    <button onclick="location.href='/logout'">로그아웃</button>
+</c:if>
+
 </body>
 </html>

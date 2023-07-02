@@ -3,6 +3,8 @@ package com.study.practice.controller;
 
 import com.study.practice.domain.Reply;
 import com.study.practice.service.ReplyDAOImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,12 @@ import com.study.practice.domain.Board;
 import com.study.practice.domain.Page;
 import com.study.practice.service.BoardDAOImpl;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class BoardController {
+
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -40,7 +46,15 @@ public class BoardController {
 	
 	// 게시물 작성 (GET)
 	@RequestMapping(value ="/write", method = RequestMethod.GET)
-	public String getWrite() throws Exception {
+	public String getWrite(HttpSession session, Model model) throws Exception {
+		logger.info("get write");
+
+		Object loginInfo = session.getAttribute("user");
+
+		if (loginInfo == null) {
+			model.addAttribute("msg", "login_error");
+		}
+
 		return "write";
 	}
 	

@@ -11,4 +11,9 @@
             VALUES(#{userId}, #{userPass}, #{userName})
     </insert>
 
+    <!-- 로그인 -->
+    <select id="login" parameterType="com.study.practice.domain.User" resultType="com.study.practice.domain.User">
+        SELECT * FROM user WHERE userID = #{userId} AND userPass = #{userPass}
+    </select>
+
 </mapper>
