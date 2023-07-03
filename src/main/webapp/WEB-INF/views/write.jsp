@@ -33,7 +33,7 @@
     </form>
     </c:if>
 
-    <c:if test="${msg != 'login_error'}">
+    <c:if test="${msg == 'login_error'}">
         <p>로그인을 하셔야 글을 작성할 수 있습니다.</p>
         <p><a href="/">홈으로</a></p>
     </c:if>
