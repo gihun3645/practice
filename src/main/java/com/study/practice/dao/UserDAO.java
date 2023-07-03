@@ -13,4 +13,7 @@ public interface UserDAO {
 
     // 로그인
     public User login(User user) throws Exception;
+
+    // 회원정보 수정
+    public void modify(User user) throws Exception;
 }

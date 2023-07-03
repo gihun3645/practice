@@ -71,4 +71,23 @@ public class UserController {
 
         return "redirect:/";
     }
+
+    // 회원정보 수정 get
+    @RequestMapping(value = "/modifyUser", method = RequestMethod.GET)
+    public void getModify() throws Exception {
+        logger.info("get modify");
+    }
+
+    // 회원정보 수정 post
+    @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
+    public String postModify(HttpSession session, User user) throws Exception {
+        logger.info("post modify");
+
+        userDAOImpl.modify(user);
+
+        // 현재 세션이 제거되어 로그아웃
+        session.invalidate();
+
+        return "redirect:/";
+    }
 }

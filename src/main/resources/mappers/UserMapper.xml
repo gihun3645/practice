@@ -8,12 +8,22 @@
     <!-- 회원가입 -->
     <insert id="register" parameterType="com.study.practice.domain.User">
         INSERT INTO user(userID, userPass, userName)
-            VALUES(#{userId}, #{userPass}, #{userName})
+        VALUES (#{userId}, #{userPass}, #{userName})
     </insert>
 
     <!-- 로그인 -->
     <select id="login" parameterType="com.study.practice.domain.User" resultType="com.study.practice.domain.User">
-        SELECT * FROM user WHERE userID = #{userId} AND userPass = #{userPass}
+        SELECT *
+        FROM user
+        WHERE userID = #{userId}
+          AND userPass = #{userPass}
     </select>
+
+    <!-- 회원정보 수정 -->
+    <update id="modify">
+        UPDATE user
+        SET userPass = #{userPass}
+        WHERE userName = #{userName}
+    </update>
 
 </mapper>

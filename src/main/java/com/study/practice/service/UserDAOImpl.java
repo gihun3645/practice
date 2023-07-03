@@ -23,9 +23,15 @@ public class UserDAOImpl implements UserDAO {
     }
 
     // 로그인
-
     @Override
     public User login(User user) throws Exception {
         return userDAO.login(user);
+    }
+
+    // 회원정보 수정
+
+    @Override
+    public void modify(User user) throws Exception {
+        userDAO.modify(user);
     }
 }

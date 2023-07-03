@@ -27,7 +27,7 @@
 
     <c:choose>
         <c:when test="${user != null}">
-            <p>${user.userName}님</p>
+            <p><a href="/modifyUser">${user.userName}</a>님</p>
             <a class="p-2 text-dark btn btn-outline-primary" href="/write">글 작성</a>
             <a class="p-2 text-dark btn btn-outline-primary" href="/logout">로그아웃</a>
         </c:when>
