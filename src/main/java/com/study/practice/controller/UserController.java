@@ -50,13 +50,15 @@ public class UserController {
         logger.info("post login");
         HttpSession session = req.getSession();
         User login = userDAOImpl.login(user);
+        System.out.println(user);
         if (login == null) {
             session.setAttribute("user", null);
             rttr.addFlashAttribute("msg", false);
+            return "redirect:/login";
         } else {
             session.setAttribute("user", login);
+            return "redirect:/";
         }
-        return "redirect:/";
     }
 
 

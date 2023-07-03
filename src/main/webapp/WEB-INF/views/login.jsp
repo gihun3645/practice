@@ -15,7 +15,7 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>회원가입</title>
+    <title>로그인</title>
 </head>
 <body>
 <div class="container">
@@ -23,7 +23,7 @@
         <%@  include file="nav.jsp" %>
     </div>
     <%--로그인 창 추가--%>
-    <c:if test="${user == null}">
+    <c:if test="${user == null || msg == false}">
         <form role="form" method="post" autocomplete="off" action="/login">
             <div class="form-group">
                 <label for="userId">아이디</label>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="userPass">패스워드</label>
-                <input type="text" id="userPass" name="userPass" class="form-control"/>
+                <input type="password" id="userPass" name="userPass" class="form-control"/>
             </div>
             <button type="submit" class="btn btn-primary" >로그인</button>
         </form>
@@ -40,6 +40,7 @@
     <c:if test="${msg == false}">
         <p style="color: red">로그인 실패</p>
     </c:if>
+
 </div>
 </body>
 </html>
