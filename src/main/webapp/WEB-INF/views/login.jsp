@@ -38,7 +38,9 @@
     </c:if>
 
     <c:if test="${msg == false}">
-        <p style="color: red">로그인 실패</p>
+        <div class="alert alert-danger mt-2" role="alert">
+            아이디 혹은 패스워드가 일치하지 않습니다.
+        </div>
     </c:if>
 
 </div>

@@ -26,4 +26,11 @@
         WHERE userName = #{userName}
     </update>
 
+
+    <!-- 회원 탈퇴 -->
+    <delete id="withdrawal">
+        DELETE FROM user
+        WHERE userId = #{userId}
+          AND userPass = #{userPass}
+    </delete>
 </mapper>

@@ -29,9 +29,14 @@ public class UserDAOImpl implements UserDAO {
     }
 
     // 회원정보 수정
-
     @Override
     public void modify(User user) throws Exception {
         userDAO.modify(user);
+    }
+
+    // 회원탈퇴
+    @Override
+    public void withdrawal(User user) throws Exception {
+        userDAO.withdrawal(user);
     }
 }

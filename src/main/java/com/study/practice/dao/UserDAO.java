@@ -16,4 +16,7 @@ public interface UserDAO {
 
     // 회원정보 수정
     public void modify(User user) throws Exception;
+
+    // 회원탈퇴
+    public void withdrawal(User user) throws Exception;
 }

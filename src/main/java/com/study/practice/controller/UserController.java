@@ -72,13 +72,13 @@ public class UserController {
         return "redirect:/";
     }
 
-    // 회원정보 수정 get
+    // 회원정보 수정 GET
     @RequestMapping(value = "/modifyUser", method = RequestMethod.GET)
     public void getModify() throws Exception {
         logger.info("get modify");
     }
 
-    // 회원정보 수정 post
+    // 회원정보 수정 POST
     @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
     public String postModify(HttpSession session, User user) throws Exception {
         logger.info("post modify");
@@ -90,4 +90,41 @@ public class UserController {
 
         return "redirect:/";
     }
+
+    // 회원탈퇴 GET
+    @RequestMapping(value = "/withdrawal", method = RequestMethod.GET)
+    public void getWithdrawal() throws Exception {
+        logger.info("get withdrawal");
+    }
+
+    // 회원탈퇴 POST
+    @RequestMapping(value = "/withdrawal", method = RequestMethod.POST)
+    public String postWithdrawal(HttpSession session, User userToWithdraw, RedirectAttributes redirectAttributes) throws Exception {
+        logger.info("post withdrawal");
+
+        // 데이터 타입은 기본적으로 오브젝트 타입이라
+        // 오브젝트 변수를 생성하여 받거나 형변환(캐스팅)을 해줘야함
+        // 현재 세션에서 User 정보를 가져옴.
+        // 세션의 "user"라는 속성 값이 object이므로 이를 User 타입으로 형변환(casting)해줘야 함
+        User currentUser = (User) session.getAttribute("user");
+
+        // 현제 사용자의 비밀번호
+        String currentPassword = currentUser.getUserPass();
+        // 탈퇴를 원하는 사용자가 입력한 비밀번호
+        String providedPassword = userToWithdraw.getUserPass();
+
+        if (!(currentPassword.equals(providedPassword))) {
+            redirectAttributes.addFlashAttribute("msg", false);
+            return "redirect:/withdrawal";
+        }
+
+        // 사용자 정보를 DB에서 삭제
+        userDAOImpl.withdrawal(userToWithdraw);
+
+        // 사용자 정보를 DB에서 삭제
+        session.invalidate();
+
+        return "redirect:/";
+    }
+
 }
