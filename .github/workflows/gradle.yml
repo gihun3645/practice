@@ -43,9 +43,8 @@ jobs:
         run: ./gradlew build
         shell: bash
 
-      - name: Stop 8080 port
-        run: |
-          fuser -k 8080/tcp
+      - name: Stop service on port 8080
+        run: sudo lsof -t -i:8080 | xargs -I {} sudo kill -9 {}
         shell: bash
 
       - name: Execute snapshot file
