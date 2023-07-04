@@ -42,7 +42,3 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
         shell: bash
-
-      - name: Execute snapshot file
-        run: |
-          nohup java -jar build/libs/practice-0.0.1-SNAPSHOT.war &
