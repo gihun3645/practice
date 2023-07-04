@@ -45,3 +45,4 @@ jobs:
 
       - name : start deploy script
         run : ./deploy.sh
+        shell: bash
