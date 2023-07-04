@@ -15,6 +15,10 @@ configurations {
     }
 }
 
+war {
+    enabled = false
+}
+
 repositories {
     mavenCentral()
 }
