@@ -39,4 +39,10 @@ public class UserDAOImpl implements UserDAO {
     public void withdrawal(User user) throws Exception {
         userDAO.withdrawal(user);
     }
+
+    // 아이디 중복 검사
+    @Override
+    public User idCheck(String userId) throws Exception {
+        return userDAO.idCheck(userId);
+    }
 }

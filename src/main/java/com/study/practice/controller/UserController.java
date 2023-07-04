@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.slf4j.Logger;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -125,6 +126,26 @@ public class UserController {
         session.invalidate();
 
         return "redirect:/";
+    }
+
+    // 회원 확인
+
+    // JSP가 필요없어서 @ResponseBody 사용
+    @ResponseBody
+    @RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+    public int postIdCheck(HttpServletRequest req) throws Exception {
+        logger.info("post idCheck");
+
+        String userId = req.getParameter("userId");
+        User idCheck =  userDAOImpl.idCheck(userId);
+
+        int result = 0;
+
+        if(idCheck != null) {
+            result = 1;
+        }
+
+        return result;
     }
 
 }

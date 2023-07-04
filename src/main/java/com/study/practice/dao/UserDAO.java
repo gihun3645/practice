@@ -19,4 +19,7 @@ public interface UserDAO {
 
     // 회원탈퇴
     public void withdrawal(User user) throws Exception;
+
+    // 아이디 중복 검사
+    public User idCheck(String userId) throws Exception;
 }
