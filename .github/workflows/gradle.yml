@@ -43,6 +43,10 @@ jobs:
         run: ./gradlew clean build
         shell: bash
 
+      - name: Grant execute permission for deploy shell
+        run: chmod +x ./deploy.sh
+        shell: bash
+
       - name : start deploy script
         run : ./deploy.sh
         shell: bash
