@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>회원정보 수정</title>
+    <title>회원탈 </title>
 </head>
 <body>
 <div class="container">
@@ -19,15 +19,19 @@
         <div class="form-group">
             <label for="userName">닉네임</label>
             <input type="text" id="userName" name="userName"
-                   value="${user.userName}" class="form-control">
+                   value="${user.userName}" class="form-control" readonly/>
         </div>
         <div class="form-group">
-            <label for="userPass">새로운 패스워드</label>
+            <label for="userPass">패스워드</label>
             <input type="password" id="userPass" name="userPass" class="form-control">
         </div>
-        <button type="submit" id="submit" class="btn btn-primary">수정</button>
-        <p>회원 탈퇴는 <a href="/withdrawal">여기</a>를 눌러주세요.</p>
+        <button type="submit" id="submit" class="btn btn-primary">회원탈퇴</button>
     </form>
+    <c:if test="${msg == false}">
+        <div class="alert alert-danger mt-2" role="alert">
+            패스워드가 일치하지 않습니다.
+        </div>
+    </c:if>
 </div>
 </body>
 </html>
