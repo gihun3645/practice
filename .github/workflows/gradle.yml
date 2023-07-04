@@ -35,9 +35,18 @@ jobs:
         with:
           arguments: build
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+        shell: bash
 
-      - name: Stop service on port 8080
-        run: fuser -k -n tcp 8080
+      - name: Build with Gradle
+        run: ./gradlew build
+        shell: bash
+
+      - name: Stop 8080 port
+        run: fuser -k 8080/tcp
+        shell: bash
+
       - name: Execute snapshot file
         run: |
           nohup java -jar build/libs/practice-0.0.1-SNAPSHOT.war &
