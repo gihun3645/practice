@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>회원탈 </title>
+    <title>회원탈퇴</title>
 </head>
 <body>
 <div class="container">
@@ -17,9 +17,9 @@
     </div>
     <form role="form" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="userName">닉네임</label>
-            <input type="text" id="userName" name="userName"
-                   value="${user.userName}" class="form-control" readonly/>
+            <label for="userID">아이디</label>
+            <input type="text" id="userId" name="userId"
+                   value="${user.userId}" class="form-control" readonly/>
         </div>
         <div class="form-group">
             <label for="userPass">패스워드</label>
