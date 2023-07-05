@@ -22,10 +22,18 @@ public class UserDAOImpl implements UserDAO {
         userDAO.register(user);
     }
 
+    @Override
+    public String toString() {
+        return "UserDAOImpl{" +
+                "userDAO=" + userDAO +
+                '}';
+    }
+
     // 로그인
     @Override
     public User login(User user) throws Exception {
         return userDAO.login(user);
+
     }
 
     // 회원정보 수정

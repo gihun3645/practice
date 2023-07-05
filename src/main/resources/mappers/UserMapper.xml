@@ -11,12 +11,11 @@
         VALUES (#{userId}, #{userPass}, #{userName})
     </insert>
 
-    <!-- 로그인 -->
+    <!-- 로그인 암호화 적용-->
     <select id="login" parameterType="com.study.practice.domain.User" resultType="com.study.practice.domain.User">
-        SELECT *
+        SELECT userId, userName, userPass
         FROM user
-        WHERE userID = #{userId}
-          AND userPass = #{userPass}
+        WHERE userId = #{userId};
     </select>
 
     <!-- 회원정보 수정 -->

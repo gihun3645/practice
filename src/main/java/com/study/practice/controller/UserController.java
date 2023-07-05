@@ -4,6 +4,7 @@ import com.study.practice.domain.User;
 import com.study.practice.service.UserDAOImpl;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,10 @@ public class UserController {
     @Autowired
     private UserDAOImpl userDAOImpl;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+
     // 회원가입 GET
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public void getRegister() throws Exception {
@@ -33,8 +38,9 @@ public class UserController {
     public String postRegister(User user) throws Exception {
         logger.info("post resister");
 
+        // 비밀번호를 암호화하여 저장
+        user.setUserPass(passwordEncoder.encode(user.getUserPass()));
         userDAOImpl.register(user);
-
         return "redirect:/";
     }
 
@@ -51,16 +57,19 @@ public class UserController {
         logger.info("post login");
         HttpSession session = req.getSession();
         User login = userDAOImpl.login(user);
-        System.out.println(user);
-        if (login == null) {
-            session.setAttribute("user", null);
-            rttr.addFlashAttribute("msg", false);
-            return "redirect:/login";
-        } else {
+
+        // 기존 암호와 맞는지
+        boolean passMatch = passwordEncoder.matches(user.getUserPass(), login.getUserPass());
+
+        if (login != null && passMatch) {
             session.setAttribute("user", login);
             return "redirect:/";
+        } else {
+                session.setAttribute("user", null);
+                rttr.addFlashAttribute("msg", false);
+                return "redirect:/login";
+            }
         }
-    }
 
 
     // 로그아웃
@@ -83,12 +92,10 @@ public class UserController {
     @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
     public String postModify(HttpSession session, User user) throws Exception {
         logger.info("post modify");
-
+        user.setUserPass(passwordEncoder.encode(user.getUserPass()));
         userDAOImpl.modify(user);
-
         // 현재 세션이 제거되어 로그아웃
         session.invalidate();
-
         return "redirect:/";
     }
 
@@ -114,7 +121,7 @@ public class UserController {
         // 탈퇴를 원하는 사용자가 입력한 비밀번호
         String providedPassword = userToWithdraw.getUserPass();
 
-        if (!(currentPassword.equals(providedPassword))) {
+        if (!(passwordEncoder.matches(providedPassword, currentPassword))) {
             redirectAttributes.addFlashAttribute("msg", false);
             return "redirect:/withdrawal";
         }
