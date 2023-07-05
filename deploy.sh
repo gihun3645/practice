@@ -1,7 +1,4 @@
 #!/bin/bash
-# 변경사항 불러오기
-git pull
-
 DEPLOY_PATH="./build/libs/"
 # 기존 파일 확인 및 삭제
 if [ -f "$DEPLOY_PATH$WAR_NAME" ]; then
