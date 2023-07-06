@@ -58,18 +58,26 @@ public class UserController {
         HttpSession session = req.getSession();
         User login = userDAOImpl.login(user);
 
-        // 기존 암호와 맞는지
-        boolean passMatch = passwordEncoder.matches(user.getUserPass(), login.getUserPass());
+        if (login != null) {
+            // 기존 암호와 맞는지
+            boolean passMatch = passwordEncoder.matches(user.getUserPass(), login.getUserPass());
 
-        if (login != null && passMatch) {
-            session.setAttribute("user", login);
-            return "redirect:/";
-        } else {
+            System.out.println(passMatch);
+
+            if (passMatch) {
+                session.setAttribute("user", login);
+                return "redirect:/";
+            } else {
                 session.setAttribute("user", null);
                 rttr.addFlashAttribute("msg", false);
                 return "redirect:/login";
             }
+        } else {
+            session.setAttribute("user", null);
+            rttr.addFlashAttribute("msg", false);
+            return "redirect:/login";
         }
+    }
 
 
     // 로그아웃
@@ -116,10 +124,18 @@ public class UserController {
         // 세션의 "user"라는 속성 값이 object이므로 이를 User 타입으로 형변환(casting)해줘야 함
         User currentUser = (User) session.getAttribute("user");
 
+
+        // 사용자 정보
+        System.out.println("사용자 정보 : " + userToWithdraw);
+
         // 현제 사용자의 비밀번호
         String currentPassword = currentUser.getUserPass();
         // 탈퇴를 원하는 사용자가 입력한 비밀번호
         String providedPassword = userToWithdraw.getUserPass();
+
+        System.out.println("현제 비번" + currentPassword);
+        System.out.println("입력된 비번" + providedPassword);
+        System.out.println((passwordEncoder.matches(providedPassword, currentPassword)));
 
         if (!(passwordEncoder.matches(providedPassword, currentPassword))) {
             redirectAttributes.addFlashAttribute("msg", false);
@@ -128,8 +144,6 @@ public class UserController {
 
         // 사용자 정보를 DB에서 삭제
         userDAOImpl.withdrawal(userToWithdraw);
-
-        // 사용자 정보를 DB에서 삭제
         session.invalidate();
 
         return "redirect:/";
@@ -144,11 +158,11 @@ public class UserController {
         logger.info("post idCheck");
 
         String userId = req.getParameter("userId");
-        User idCheck =  userDAOImpl.idCheck(userId);
+        User idCheck = userDAOImpl.idCheck(userId);
 
         int result = 0;
 
-        if(idCheck != null) {
+        if (idCheck != null) {
             result = 1;
         }
 
