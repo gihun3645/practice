@@ -6,10 +6,14 @@ import com.study.practice.service.ReplyDAOImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +53,7 @@ public class BoardController {
 	public String getWrite(HttpSession session, Model model) throws Exception {
 		logger.info("get write");
 
+
 		Object loginInfo = session.getAttribute("user");
 
 		if (loginInfo == null) {
@@ -57,13 +62,13 @@ public class BoardController {
 
 		return "write";
 	}
-	
-	// 게시물 작성 (POST)
+
+
+	// 게시물 작성 POST
 	@RequestMapping(value = "/write", method = RequestMethod.POST )
-	public String postWrite(Board board) throws Exception{
+	public ResponseEntity<Board> postWrite(@RequestBody Board board) throws Exception{
 		boardDAOImpl.write(board);
-		
-		return "redirect:/listPageSearch?num=1";
+		return new ResponseEntity<>(board, HttpStatus.CREATED);
 	}
 	
 	// 게시물 조회
@@ -87,13 +92,20 @@ public class BoardController {
 			
 			model.addAttribute("view", board);
 		}
+
+
+//	@RequestMapping(value = "/write", method = RequestMethod.POST )
+//	public ResponseEntity<Board> postWrite(@RequestBody Board board) throws Exception{
+//		boardDAOImpl.write(board);
+//		return new ResponseEntity<>(board, HttpStatus.CREATED);
+//	}
 		
 		// 게시물 수정 (POST)
 		@RequestMapping(value = "/modify", method = RequestMethod.POST) 
-		public String postModify(Board board) throws Exception {
+		public ResponseEntity<Board> postModify(@RequestBody Board board) throws Exception {
 			boardDAOImpl.modify(board);
-			
-			return "redirect:/view?board_id="+board.getBoard_id();
+
+			return new ResponseEntity<>(board, HttpStatus.CREATED);
 		}
 		
 		// 게시물 삭제 (DELETE)

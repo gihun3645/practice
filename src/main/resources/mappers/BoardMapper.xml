@@ -18,8 +18,8 @@
 
     <!-- 게시물 작성 -->
     <insert id="write" parameterType="com.study.practice.domain.Board">
-        insert into board (title, content, writer)
-        values (#{title}, #{content}, #{writer})
+        insert into board (title, writer, content)
+        values (#{title}, #{writer}, #{content})
     </insert>
 
     <!-- 게시물 조회 -->

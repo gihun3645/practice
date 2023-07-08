@@ -10,6 +10,23 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
+    <%--토스트 UI--%>
+    <!-- Editor's Style -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css"/>
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
+    <!-- 토스트 UI viewer css -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css"/>
+    <!-- TOAST UI 하이라이트 플러그인 -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.css"
+    />
+    <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
     <title>게시물 조회</title>
 </head>
 <body>
@@ -28,7 +45,7 @@
 
     <hr/>
 
-    <div class="content mb-3">
+    <div class="form-group" id="viewer">
         ${view.content}
     </div>
 
@@ -80,5 +97,20 @@
 
     <!-- 댓글 끝 -->
 </div>
+
+
+<!-- Toast UI viewer -->
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
+<!-- Toast UI 하이라이트 플러그인 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+<script>
+
+    const viewer = new toastui.Editor({
+        el: document.querySelector('#viewer'),
+        viewer: true,
+    });
+
+
+</script>
 </body>
 </html>

@@ -4,11 +4,14 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <title>게시물 수정</title>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css"/>
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -26,14 +29,65 @@
                 </div>
 
                 <div class="form-group">
-                    <label>내용</label>
-                    <textarea cols="50" rows="5" name="content" class="form-control">${view.content}</textarea>
+                    <div id="editor">${view.content}</div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">완료</button>
             </form>
+            <button id="btn-update" class="btn btn-primary">작성</button>
         </div>
     </div>
 </div>
+<!-- TOAST UI 하이라이트 플러그인 -->
+<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+<script>
+    const Editor = toastui.Editor;
+    const editor = new Editor({
+        el: document.querySelector("#editor"),
+        height: "600px",
+        initialEditType: "wysiwyg",
+        placeholder: "내용을 입력해주세요",
+        language: "ko-KR",
+        plugins: [Editor.plugin.codeSyntaxHighlight],
+    });
+
+
+    // 수정 버튼 클릭 시 AJAX
+    // Ajax 스크립트
+    let index = {
+        init: function () {
+            $("#btn-update").on("click", () => {
+                this.update();
+            });
+        },
+
+        update: function () {
+            let data = {
+                title: $("#title").val(),
+                writer: $("#writer").val(),
+                content: editor.getHTML(),
+            }
+
+            console.log(data);
+
+
+            $.ajax({
+                type: "POST",
+                url: "/modify",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            }).done(function () {
+                alert("수정이 완료되었습니다.");
+                location.href = "/listPageSearch?num=1";
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+                console.log(error);
+            })
+        }
+    }
+
+    index.init();
+
+</script>
 </body>
 </html>

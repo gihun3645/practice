@@ -21,15 +21,16 @@
 
 CREATE DATABASE practice CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-create table board (
-	board_id int not null auto_increment,
-    title varchar(50) not null,
-    content text not null,
-    writer varchar(30) not null,
-    reg_date timestamp not null default now(),
-    view_count int default 0,
-    primary key(board_id)
+CREATE TABLE board (
+        board_id INT NOT NULL AUTO_INCREMENT,
+        title VARCHAR(50) NOT NULL,
+        content LONGTEXT NOT NULL,
+        writer VARCHAR(30) NOT NULL,
+        reg_date TIMESTAMP NOT NULL DEFAULT NOW(),
+        view_count INT DEFAULT 0,
+        PRIMARY KEY(board_id)
 );
+
 
 create table board_reply (
     reply_id int not null auto_increment,
