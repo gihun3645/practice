@@ -35,17 +35,19 @@
     </div>
     <c:if test="${msg != 'login_error'}">
         <form>
+
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="제목을 입력 하세요." id="title">
             </div>
 
             <div class="form-group">
-                <input type="text"  placeholder="작성자" id="writer" class="form-control"/>
-            </div>
-
-            <div class="form-group">
                 <div class="form-control" id="editor"></div>
             </div>
+
+            <!-- Hidden input field for the username -->
+            <input type="hidden" id="username" value="${username}">
+
+
         </form>
         <button id="btn-save" class="btn btn-primary">작성</button>
     </c:if>
@@ -79,7 +81,7 @@
         save: function () {
             let data = {
                 title: $("#title").val(),
-                writer: $("#writer").val(),
+                writer: $("#username").val(),
                 content: editor.getHTML(),
             }
 

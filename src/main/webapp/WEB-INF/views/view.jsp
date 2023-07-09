@@ -52,8 +52,8 @@
     <hr/>
 
     <div class="mb-4">
-        <a href="/modify?board_id=${view.board_id}" class="btn btn-warning">게시물 수정</a>
-        <a href="/delete?board_id=${view.board_id}" class="btn btn-danger">게시물 삭제</a>
+            <a href="/modify?board_id=${view.board_id}" class="btn btn-warning">게시물 수정</a>
+            <a href="/delete?board_id=${view.board_id}" class="btn btn-danger">게시물 삭제</a>
     </div>
 
     <!-- 댓글 시작 -->

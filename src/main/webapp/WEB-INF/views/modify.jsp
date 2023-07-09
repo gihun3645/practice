@@ -15,27 +15,24 @@
 </head>
 <body>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form method="post">
-                <div class="form-group">
-                    <label>제목</label>
-                    <input type="text" name="title" value="${view.title}" class="form-control"/>
-                </div>
-
-                <div class="form-group">
-                    <label>작성자</label>
-                    <input type="text" name="writer" value="${view.writer}" class="form-control"/>
-                </div>
-
-                <div class="form-group">
-                    <div id="editor">${view.content}</div>
-                </div>
-
-            </form>
-            <button id="btn-update" class="btn btn-primary">작성</button>
+    <%@  include file="nav.jsp" %> <!-- 네비게이션 바 -->
+    <form method="post">
+        <div class="form-group">
+            <label>제목</label>
+            <input type="text" name="title" value="${view.title}" class="form-control"/>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label>작성자</label>
+            <input type="text" disabled="disabled" name="writer" value="${view.writer}" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <div id="editor">${view.content}</div>
+        </div>
+
+    </form>
+    <button id="btn-update" class="btn btn-primary">작성</button>
 </div>
 <!-- TOAST UI 하이라이트 플러그인 -->
 <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
